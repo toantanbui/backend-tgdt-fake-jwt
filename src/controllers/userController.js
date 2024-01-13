@@ -85,7 +85,7 @@ let handleEditUsers = async (req, res) => {
 let handleLoginUsers = async (req, res) => {
     try {
         let users = await userService.handleLoginUsers(req.body);
-        await res.cookie("data1", users.token1, { httpOnly: true, maxAge: 10 * 1000 })
+        await res.cookie("jwt", users.token1, { httpOnly: true })
 
         return res.status(200).json(users)
 
@@ -127,7 +127,7 @@ let handleGetAllProduct = async (req, res) => {
         res.cookie("abc", "abc", { httpOnly: true })
 
 
-        console.log('Cookie: ', req.cookies);
+        console.log('Cookie: ', req.user);
         return res.status(200).json(users)
 
 

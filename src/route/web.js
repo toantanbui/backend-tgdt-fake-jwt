@@ -1,7 +1,7 @@
 import express from 'express';
 import homeController from '../controllers/homeController';
 import userController from '../controllers/userController';
-
+import { checkUserJWT } from '../middleware/JWTAction'
 let router = express.Router();
 
 const testMiddleware = (req, res, next) => {
@@ -24,7 +24,7 @@ const webRoute = (app) => {
     router.get('/crud', homeController.postCRUD);
     router.post('/post-crud', homeController.actionPostCRUD);
 
-    router.get('/crud-user-get', testMiddleware, userController.handleGetAllUsers);
+    router.get('/crud-user-get', userController.handleGetAllUsers);
     router.post('/crud-user-create', userController.handleCreateAllUsers);
     router.post('/crud-user-delete', userController.handleDeleteUsers);
     router.post('/crud-user-edit', userController.handleEditUsers);
@@ -32,7 +32,7 @@ const webRoute = (app) => {
     router.post('/api/login', userController.handleLoginUsers);
 
     router.post('/crud-product-create', userController.handleCreateAllProduct);
-    router.get('/crud-product-get', userController.handleGetAllProduct);
+    router.get('/crud-product-get', checkUserJWT, userController.handleGetAllProduct);
     router.post('/crud-product-delete', userController.handleDeleteProduct);
     router.post('/crud-product-edit', userController.handleEditProduct);
 
