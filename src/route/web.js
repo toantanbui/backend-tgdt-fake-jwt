@@ -11,9 +11,19 @@ const testMiddleware = (req, res, next) => {
     next();
 }
 
+// const checkUser = (req, res, next) => {
+//     //Lenh bỏ qua những địa chỉ khác
+//     const nonSecurePaths = ['/api/login', '/crud'];
+//     if (nonSecurePaths.includes(req.path)) {
+//         return next();
+//     }
+// }
+
 
 
 const webRoute = (app) => {
+    router.all('*', checkUserJWT);
+
     router.get('/toan', (req, res) => {
         return res.send('Đây là Toàn')
     })
@@ -32,7 +42,7 @@ const webRoute = (app) => {
     router.post('/api/login', userController.handleLoginUsers);
 
     router.post('/crud-product-create', userController.handleCreateAllProduct);
-    router.get('/crud-product-get', checkUserJWT, userController.handleGetAllProduct);
+    router.get('/crud-product-get', userController.handleGetAllProduct);
     router.post('/crud-product-delete', userController.handleDeleteProduct);
     router.post('/crud-product-edit', userController.handleEditProduct);
 

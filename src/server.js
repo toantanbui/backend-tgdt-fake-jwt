@@ -51,6 +51,8 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
+
+
 // createJWT();
 //let data = verifyToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpYyIsImFkZHJlc3MiOiJIYSBOb2kiLCJpYXQiOjE3MDQ5ODQ3Nzl9.6w4gOcOsJJRi7HV-pEF4C3D35t5vAwcD7nZu-OitZ6c');
 //console.log(data);
